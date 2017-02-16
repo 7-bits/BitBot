@@ -88,4 +88,4 @@ async def on_message(message):
     #    print('command %s not recognized' % (message.content))
     #    await client.send_message(message.channel, 'This is not a valid command. Maybe try `^commands`?')
 # Start the bot!
-client.run('MjcyMDIwMzk1ODE1NjAwMTMy.C2zs3Q.A2_0nfZD6FRE4bqDpGZjOOD0izc')
+client.run('bot_token')
