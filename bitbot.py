@@ -15,7 +15,7 @@ import discord
 import random
 import asyncio
 
-client = discord.Client() # maybe change this to bot?
+client = discord.Client()
 
 EIGHT_BALL_OPTIONS = ["It is certain", "It is decidedly so", "Without a doubt",
                       "Yes definitely", "You may rely on it", "As I see it yes",
@@ -27,26 +27,11 @@ EIGHT_BALL_OPTIONS = ["It is certain", "It is decidedly so", "Without a doubt",
                       "My sources say no", "Outlook not so good",
                       "Very doubtful"]
 
-#Function to lookup the money and create a top 5 users.
-#async def leader_lookup(author, message):
-#    bank_dict = build_dict(BANK_PATH)
-#    counter = 0
-#    leader_list = []
-#    for key in sorted(bank_dict, key=bank_dict.get, reverse=True)[:5]:
-#        counter += 1
-#        leader_list.append('#%s - %s - $%s' % (counter, key, bank_dict[key]))
-#    await client.send_message(message.channel, '  |  '.join(leader_list))
-
 @client.event
 async def on_ready():
     print("Bot is online!") # Good morning.
 
-# Rolling the odds for a user.
-async def roll_odds(author, message):
-    rand_roll = random.randint(0, 100)
-    await client.send_message(message.channel, '%s your roll is %s' % (message.author, rand_roll))
-
-# Dispacther for messages from the users.
+# Bot, thy shall answer me!
 @client.event
 async def on_message(message):
     if message.content.startswith('^help'):
@@ -84,8 +69,5 @@ async def on_message(message):
         question = message.content.strip('^8ball')
         prediction = random.randint(0, len(EIGHT_BALL_OPTIONS) - 1)
         await client.send_message(message.channel, 'Question: [%s], %s' % (question, EIGHT_BALL_OPTIONS[prediction]))
-    #elif message.content.startswith("^"):
-    #    print('command %s not recognized' % (message.content))
-    #    await client.send_message(message.channel, 'This is not a valid command. Maybe try `^commands`?')
-# Start the bot!
+ # Start the bot!
 client.run('bot_token')
